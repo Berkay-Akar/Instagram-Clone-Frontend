@@ -57,28 +57,22 @@ export const POSTS = gql`
   }
 `;
 
-export const STORIES = gql`
-  query Stories {
-    stories {
-      id
-      file
-      is_saved
-      like_count
-      created_at
+export const GET_STORY_LIST = gql`
+  query getStoryList {
+    getStoryList {
       user {
         id
         name
         username
         profile_photo
       }
-      likes {
+      stories {
         id
-        user {
-          id
-          name
-          username
-          profile_photo
-        }
+        file
+        like_count
+        is_saved
+        created_at
+        user_id
       }
     }
   }

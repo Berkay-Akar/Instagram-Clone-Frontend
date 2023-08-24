@@ -20,8 +20,6 @@ import Upload from "./Upload";
 import { Link } from "react-router-dom";
 import StoryContainer from "./StoryContainer";
 
-/* eslint-disable react/prop-types */
-
 function Main({ isOpen, setIsOpen, isStoryOpen, setIsStoryOpen }) {
   const { loading, error, data } = useQuery(POSTS);
   const { user } = useContext(userContext);
@@ -207,7 +205,6 @@ function Main({ isOpen, setIsOpen, isStoryOpen, setIsStoryOpen }) {
 
   useEffect(() => {
     if (data && data.posts) {
-      console.log("data", data);
       setPosts(data.posts);
     }
   }, [data]);

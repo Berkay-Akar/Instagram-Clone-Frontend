@@ -21,8 +21,6 @@ function Sidebar({ handleLogout, isOpen, setIsOpen }) {
 
   const [active, setActive] = useState("home");
 
-  console.log(active);
-
   const navigate = useNavigate();
   const handleItemClick = (page) => {
     setActive(page);

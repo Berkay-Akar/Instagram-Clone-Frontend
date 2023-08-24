@@ -35,7 +35,6 @@ function Suggestions() {
 
   const maxSuggestions = showMore ? suggests.length : 3;
   const visibleSuggestions = suggests.slice(0, maxSuggestions);
-  console.log(user);
 
   return (
     <div className="h-screen sticky top-0 mt-4">

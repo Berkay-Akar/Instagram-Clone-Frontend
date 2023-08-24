@@ -24,6 +24,14 @@ function Story({
   const [unsaveStory] = useMutation(UNSAVE_STORY);
   const { user } = useContext(userContext);
 
+  function closeModal() {
+    setIsStoryOpen(false);
+  }
+
+  function openModal() {
+    setIsStoryOpen(true);
+  }
+
   const isLikedByUser = (story) => {
     if (story && story.likes) {
       const likedUsers = story.likes.map((like) => like.user.id);
@@ -145,7 +153,6 @@ function Story({
     }
   }
 
-  //handle save if story belongs to user itself
   const isSavedByUser = (story) => {
     if (story && story.saves) {
       const savedUsers = story.saves.map((save) => save.user.id);
@@ -165,55 +172,6 @@ function Story({
               <div className="story-header-user-avatar">
                 <img src={story?.user?.profile_photo} alt="avatar" />
               </div>
-              <div className="story-header-user-name">
-                <span>{story?.user?.username}</span>
-                <span>{formatTimestamp(story?.created_at)}</span>
-              </div>
-            </div>
-            <div className="story-header-actions">
-              <button
-                className="story-header-actions-button"
-                onClick={() => setIsStoryOpen(false)}
-              >
-                <i className="fas fa-times"></i>
-              </button>
-            </div>
-          </div>
-          <div className="story-body">
-            <div className="story-body-image">
-              <img src={story?.file} alt="story" />
-            </div>
-          </div>
-          <div className="story-footer">
-            <div className="story-footer-actions">
-              <button
-                className="story-footer-actions-button"
-                onClick={() => handleLike(story.id)}
-              >
-                <i
-                  className={`fas fa-heart ${
-                    isLikedByUser(story) ? "fas fa-heart" : "far fa-heart"
-                  }`}
-                ></i>
-              </button>
-              <button className="story-footer-actions-button">
-                <i className="far fa-comment"></i>
-              </button>
-              <button className="story-footer-actions-button">
-                <i className="far fa-paper-plane"></i>
-              </button>
-            </div>
-            <div className="story-footer-saves">
-              <button
-                className="story-footer-saves-button"
-                //onClick={() => handleSave(story.id)}
-              >
-                <i
-                  className={`far fa-bookmark ${
-                    isSavedByUser(story) ? "fas fa-bookmark" : "far fa-bookmark"
-                  }`}
-                ></i>
-              </button>
             </div>
           </div>
         </div>

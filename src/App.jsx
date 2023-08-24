@@ -25,7 +25,7 @@ function App() {
     localStorage.removeItem("user");
     setUser(null);
   };
-  console.log("user", user);
+
   return (
     <userContext.Provider
       value={{
