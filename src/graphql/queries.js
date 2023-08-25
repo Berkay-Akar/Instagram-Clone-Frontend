@@ -77,3 +77,276 @@ export const GET_STORY_LIST = gql`
     }
   }
 `;
+
+export const GET_USER_PROFILE = gql`
+  query getUserProfile($username: String!) {
+    getUserProfile(username: $username) {
+      id
+      name
+      username
+      email
+      post_count
+      followings_count
+      followers_count
+      description
+      profile_photo
+      posts {
+        id
+        file
+        content
+        like_count
+        comments_count
+        created_at
+        user {
+          id
+          name
+          username
+          profile_photo
+        }
+        likes {
+          id
+          user {
+            id
+            name
+            username
+            profile_photo
+          }
+        }
+        saves {
+          id
+          user {
+            id
+            name
+            username
+          }
+        }
+        post_replies {
+          id
+          content
+          like_count
+          created_at
+          updated_at
+          user {
+            id
+            name
+            username
+            profile_photo
+          }
+        }
+        post_tagged {
+          id
+          user {
+            id
+            name
+            username
+          }
+        }
+      }
+      likedPosts {
+        id
+        user {
+          id
+          name
+          username
+          profile_photo
+        }
+        post {
+          id
+          file
+          content
+          like_count
+          comments_count
+          created_at
+          user {
+            id
+            name
+            username
+            profile_photo
+          }
+          likes {
+            id
+            user {
+              id
+              name
+              username
+              profile_photo
+            }
+          }
+          saves {
+            id
+            user {
+              id
+              name
+              username
+            }
+          }
+          post_replies {
+            id
+            content
+            like_count
+            created_at
+            updated_at
+            user {
+              id
+              name
+              username
+              profile_photo
+            }
+          }
+          post_tagged {
+            id
+            user {
+              id
+              name
+              username
+            }
+          }
+        }
+      }
+      savedPosts {
+        id
+        user {
+          id
+          name
+          username
+          profile_photo
+        }
+        post {
+          id
+          file
+          content
+          like_count
+          comments_count
+          created_at
+          user {
+            id
+            name
+            username
+            profile_photo
+          }
+          likes {
+            id
+            user {
+              id
+              name
+              username
+              profile_photo
+            }
+          }
+          saves {
+            id
+            user {
+              id
+              name
+              username
+            }
+          }
+          post_replies {
+            id
+            content
+            like_count
+            created_at
+            updated_at
+            user {
+              id
+              name
+              username
+              profile_photo
+            }
+          }
+          post_tagged {
+            id
+            user {
+              id
+              name
+              username
+            }
+          }
+        }
+      }
+      taggedPosts {
+        id
+        user {
+          id
+          name
+          username
+          profile_photo
+        }
+        post {
+          id
+          file
+          content
+          like_count
+          comments_count
+          created_at
+          user {
+            id
+            name
+            username
+            profile_photo
+          }
+          likes {
+            id
+            user {
+              id
+              name
+              username
+              profile_photo
+            }
+          }
+          saves {
+            id
+            user {
+              id
+              name
+              username
+            }
+          }
+
+          post_replies {
+            id
+            content
+            like_count
+            created_at
+            updated_at
+            user {
+              id
+              name
+              username
+              profile_photo
+            }
+          }
+          post_tagged {
+            id
+            user {
+              id
+              name
+              username
+            }
+          }
+        }
+      }
+      followers {
+        id
+      }
+      followings {
+        id
+      }
+      post_replies {
+        id
+        content
+        like_count
+        created_at
+        updated_at
+        user {
+          id
+          name
+          username
+          profile_photo
+        }
+      }
+      created_at
+      updated_at
+    }
+  }
+`;

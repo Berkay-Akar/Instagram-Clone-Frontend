@@ -3,7 +3,7 @@ import { Carousel } from "@material-tailwind/react";
 import { Fragment, useEffect, useState } from "react";
 import { AiOutlineHeart } from "react-icons/ai";
 
-export default function StoryModal({ children, data }) {
+export default function StoryModal({ children, data, stories }) {
   let [isOpen, setIsOpen] = useState(false);
   let [currentStoryIndex, setCurrentStoryIndex] = useState(0);
   let [timer, setTimer] = useState(null);
@@ -17,6 +17,10 @@ export default function StoryModal({ children, data }) {
     setIsOpen(true);
   }
 
+  const STRORIES = stories?.map((story) => story?.stories);
+  console.log("STRORIES", STRORIES);
+  const allStories = STRORIES?.map((story) => story?.map((file) => file?.file));
+  console.log("FILES", allStories);
   function handleCarouselChange(index) {
     setCurrentStoryIndex(index);
   }
@@ -82,14 +86,14 @@ export default function StoryModal({ children, data }) {
                     className="text-lg font-medium leading-6 text-gray-900 pr-[200px]"
                   ></Dialog.Title>
 
-                  {data?.stories?.length > 0 && (
+                  {allStories?.length > 0 && (
                     <div className="w-full flex items-center justify-center h-[700px] relative">
                       <div className="w-[390px] h-1 bg-gray-300 absolute top-1 ">
                         <div
                           className="h-1 bg-gray-500"
                           style={{
                             width: `${
-                              ((currentStoryIndex + 1) / data.stories.length) *
+                              ((currentStoryIndex + 1) / allStories.length) *
                               100
                             }%`,
                           }}
@@ -106,10 +110,10 @@ export default function StoryModal({ children, data }) {
                         </button>
                       )}
                       <img
-                        src={data?.stories[currentStoryIndex]?.file}
+                        src={allStories?.[currentStoryIndex]?.file}
                         className="w-[400px] h-[700px]"
                       />
-                      {currentStoryIndex < data?.stories?.length - 1 && (
+                      {currentStoryIndex < allStories?.length - 1 && (
                         <button
                           className="absolute top-1/2 ml-[500px] transform -translate-y-1/2 text-white bg-opacity-50"
                           onClick={() =>

@@ -238,3 +238,51 @@ export const UNSAVE_STORY = gql`
   }
   ${STORY_ACTION_FRAGMENT}
 `;
+
+export const GET_PROFILE_POSTS = gql`
+  mutation profilePosts($userId: Int!) {
+    profilePosts(userId: $userId) {
+      id
+      file
+      content
+      like_count
+      comments_count
+      created_at
+      updated_at
+      user {
+        name
+        username
+        profile_photo
+      }
+      likes {
+        id
+        user_id
+        post_id
+        user {
+          id
+          username
+          name
+          profile_photo
+        }
+      }
+      saves {
+        id
+        user_id
+        post_id
+        user {
+          id
+          username
+          name
+          profile_photo
+        }
+        post {
+          id
+          file
+          content
+          like_count
+          comments_count
+        }
+      }
+    }
+  }
+`;

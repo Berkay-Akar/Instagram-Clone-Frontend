@@ -43,7 +43,7 @@ function Suggestions() {
           {user.profile_photo ? (
             <img
               src={user?.profile_photo}
-              className="w-8 h-8 rounded-full object-cover"
+              className="w-8 h-8 rounded-full object-cover border-2 "
             />
           ) : (
             <RxAvatar className="w-8 h-8" />

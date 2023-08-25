@@ -20,12 +20,19 @@ function StoryContainer({ isStoryOpen, setIsStoryOpen }) {
     setSelectedStory(story);
     setIsStoryOpen(true);
   };
-  console.log("data", data);
+  // console.log("data", data);
+  // const temp = data.getStoryList.map((storyList) => storyList);
+  // const users = temp.map((story) => story.user);
+  // console.log("users", users);
+  // console.log(
+  //   data.getStoryList.map((storyList) => storyList?.map((story) => story))
+  // );
+
   return (
     <ul className="flex flex-row gap-3 items-center justify-start">
       {stories.map((story, index) => (
         <div key={story.id} onClick={() => handleOpenStory(index)}>
-          <StoryCard data={story} />
+          <StoryCard data={story} stories={stories} />
         </div>
       ))}
     </ul>
