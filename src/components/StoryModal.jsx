@@ -1,12 +1,14 @@
 import { Dialog, Transition } from "@headlessui/react";
-import { Carousel } from "@material-tailwind/react";
 import { Fragment, useEffect, useState } from "react";
-import { AiOutlineHeart } from "react-icons/ai";
+import Card from "./Card";
+import Carousel from "./Carousel";
+import StorySlide from "./StorySlide";
 
 export default function StoryModal({ children, data, stories }) {
   let [isOpen, setIsOpen] = useState(false);
   let [currentStoryIndex, setCurrentStoryIndex] = useState(0);
   let [timer, setTimer] = useState(null);
+
   function closeModal() {
     setIsOpen(false);
     setCurrentStoryIndex(0);
@@ -16,14 +18,23 @@ export default function StoryModal({ children, data, stories }) {
   function openModal() {
     setIsOpen(true);
   }
+  let testFile = [];
 
-  const STRORIES = stories?.map((story) => story?.stories);
-  console.log("STRORIES", STRORIES);
-  const allStories = STRORIES?.map((story) => story?.map((file) => file?.file));
-  console.log("FILES", allStories);
+  const STORIES = stories?.map((story) => {
+    // console.log("STORIES STORY", story);
+    return story.stories.map((file) => {
+      testFile = [...testFile, { file: file, user: story.user }];
+      return { file: file, user: story.user };
+    });
+  });
+  // console.log("TEST FILE", testFile);
+  // console.log("STORIES", STORIES);
+  const allStories = STORIES?.map((story) => story);
+  // console.log("FILES", allStories);
   function handleCarouselChange(index) {
     setCurrentStoryIndex(index);
   }
+  // console.log("data", data);
 
   useEffect(() => {
     if (isOpen && data?.stories?.length > 0) {
@@ -46,6 +57,10 @@ export default function StoryModal({ children, data, stories }) {
       clearTimeout(timer);
     };
   }, []);
+  const userStories = allStories?.map((userStoryList) =>
+    userStoryList.map((story) => story?.file)
+  );
+  // console.log("user Stories ", userStories);
 
   return (
     <>
@@ -86,45 +101,33 @@ export default function StoryModal({ children, data, stories }) {
                     className="text-lg font-medium leading-6 text-gray-900 pr-[200px]"
                   ></Dialog.Title>
 
-                  {allStories?.length > 0 && (
-                    <div className="w-full flex items-center justify-center h-[700px] relative">
-                      <div className="w-[390px] h-1 bg-gray-300 absolute top-1 ">
-                        <div
-                          className="h-1 bg-gray-500"
-                          style={{
-                            width: `${
-                              ((currentStoryIndex + 1) / allStories.length) *
-                              100
-                            }%`,
-                          }}
-                        ></div>
-                      </div>
-                      {currentStoryIndex > 0 && (
+                  {STORIES.map((userStories, userIndex) => (
+                    <div
+                      key={userIndex}
+                      className={`w-full flex items-center justify-center h-[700px] relative ${
+                        userIndex === currentStoryIndex ? "" : "hidden"
+                      }`}
+                    >
+                      {userIndex > 0 && (
                         <button
                           className="absolute top-1/2 mr-[500px] transform -translate-y-1/2 items-center text-white bg-opacity-50"
-                          onClick={() =>
-                            handleCarouselChange(currentStoryIndex - 1)
-                          }
+                          onClick={() => handleCarouselChange(userIndex - 1)}
                         >
                           {"<"}
                         </button>
                       )}
-                      <img
-                        src={allStories?.[currentStoryIndex]?.file}
-                        className="w-[400px] h-[700px]"
-                      />
-                      {currentStoryIndex < allStories?.length - 1 && (
+                      <StorySlide stories={STORIES} />{" "}
+                      {/* Use this line correctly */}
+                      {userIndex < STORIES.length - 1 && (
                         <button
                           className="absolute top-1/2 ml-[500px] transform -translate-y-1/2 text-white bg-opacity-50"
-                          onClick={() =>
-                            handleCarouselChange(currentStoryIndex + 1)
-                          }
+                          onClick={() => handleCarouselChange(userIndex + 1)}
                         >
                           {">"}
                         </button>
                       )}
                     </div>
-                  )}
+                  ))}
                 </Dialog.Panel>
               </Transition.Child>
             </div>
@@ -134,3 +137,14 @@ export default function StoryModal({ children, data, stories }) {
     </>
   );
 }
+
+/*
+                      <div className="w-[390px] h-1 bg-gray-300 absolute top-1 ">
+                        <div
+                          className="h-1 bg-gray-500"
+                          style={{
+                            width: `${stories.length * 100}%`,
+                          }}
+                        ></div>
+                      </div>
+*/

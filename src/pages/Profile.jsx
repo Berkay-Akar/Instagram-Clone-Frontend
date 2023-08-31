@@ -38,7 +38,7 @@ function Profile() {
   if (loading) return "Loading...";
   if (error) return `Error! ${error.message}`;
 
-  console.log(posts);
+  console.log(userProfile);
 
   return (
     <>
@@ -47,11 +47,11 @@ function Profile() {
         <div className="sticky top-0 flex flex-col p-4 border-l border-gray-extraLight bg-white w-[630px]">
           <div className="w-[750px] ">
             <div>
-              <div className="flex flex-row items-center justify-around">
+              <div className="flex flex-row items-center  justify-around mt-8">
                 <div>
                   <img
                     src={userProfile?.profile_photo}
-                    className="border-2 rounded-full w-[150px] h-[150px]"
+                    className="border-2 rounded-full w-[150px] h-[150px] object-cover"
                   />
                 </div>
                 <div className="flex flex-col items-start justify-start">
@@ -89,19 +89,28 @@ function Profile() {
                   </div>
                 </div>
               </div>
+              <div className="w-[935px] h-[200px] border-b-2 border-gray-200 mb-8 "></div>
+              <div className="grid gap-1 grid-cols-3 grid-rows-3 w-[935px]">
+                {posts.length > 0 ? (
+                  posts.map((post) => (
+                    <div key={post.id}>
+                      <img
+                        src={post.file}
+                        className="w-[309px] h-[309px] object-cover "
+                      />
+                    </div>
+                  ))
+                ) : (
+                  <span className="text-gray-400 ml-[350px] w-full">
+                    THERE IS NOTHING TO SHOW YET
+                  </span>
+                )}
+              </div>
             </div>
           </div>
         </div>
       </div>
-      <div>
-        <div className="grid gap-4 grid-cols-3 grid-rows-3 ">
-          {posts.map((post) => (
-            <div key={post.id}>
-              <img src={post.file} className="w-[450px] h-[275]" />
-            </div>
-          ))}
-        </div>
-      </div>
+      <div></div>
     </>
   );
 }

@@ -303,6 +303,7 @@ function Main({ isOpen, setIsOpen, isStoryOpen, setIsStoryOpen }) {
           isStoryOpen={isStoryOpen}
           setIsStoryOpen={setIsStoryOpen}
         />
+
         <ul className="flex flex-col items-center  justify-center">
           {posts.map((post) => (
             <li key={post.id} className="mb-4 w-[468px]">

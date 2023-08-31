@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { Sidenav, initTE } from "tw-elements";
 import {
   AiOutlineHome,
@@ -20,7 +20,6 @@ function Sidebar({ handleLogout, isOpen, setIsOpen }) {
   const { user } = useContext(userContext);
 
   const [active, setActive] = useState("home");
-
   const navigate = useNavigate();
   const handleItemClick = (page) => {
     setActive(page);
@@ -53,36 +52,36 @@ function Sidebar({ handleLogout, isOpen, setIsOpen }) {
                 onClick={() => handleItemClick("home")}
               >
                 {active === "home" ? (
-                  <AiFillHome className="w-[20px] h-[20px] hover:w-[23px] hover:h-[23px]" />
+                  <AiFillHome className="w-[20px] h-[20px] hover:scale-110 duration-300 transition" />
                 ) : (
-                  <AiOutlineHome className="w-[20px] h-[20px] hover:w-[23px] hover:h-[23px]" />
+                  <AiOutlineHome className="w-[20px] h-[20px] hover:scale-110 duration-300 transition" />
                 )}
 
                 <span className="ml-4 ">Home</span>
               </li>
             </Link>
             <li className="mb-4 flex items-center  rounded-full pl-3 pr-8 py-3">
-              <BsSearch className="w-[20px] h-[20px] hover:w-[23px] hover:h-[23px]" />
+              <BsSearch className="w-[20px] h-[20px] hover:scale-110 duration-300 transition" />
               <span className="ml-4 ">Search</span>
             </li>
             <li className="mb-4 flex items-center  group-hover:text-primary-base rounded-full pl-3 pr-8 py-3">
-              <AiOutlineCompass className="w-[20px] h-[20px] hover:w-[23px] hover:h-[23px]" />
+              <AiOutlineCompass className="w-[20px] h-[20px] hover:scale-110 duration-300 transition" />
               <span className="ml-4 ">Explore</span>
             </li>
             <li className="mb-4 flex  items-center  group-hover:text-primary-base rounded-full pl-3 pr-8 py-3">
-              <BiMoviePlay className="w-[20px] h-[20px] hover:w-[23px] hover:h-[23px]" />
+              <BiMoviePlay className="w-[20px] h-[20px] hover:scale-110 duration-300 transition" />
               <span className="ml-4 ">Reels</span>
             </li>
             <li className="mb-4 flex items-center  group-hover:text-primary-base rounded-full pl-3 pr-8 py-3">
-              <RiMessengerLine className="w-[20px] h-[20px] hover:w-[23px] hover:h-[23px]" />
+              <RiMessengerLine className="w-[20px] h-[20px] hover:scale-110 duration-300 transition" />
               <span className="ml-4 ">Messages</span>
             </li>
             <li className="mb-4 flex items-center  group-hover:text-primary-base rounded-full pl-3 pr-8 py-3">
-              <AiOutlineHeart className="w-[20px] h-[20px] hover:w-[23px] hover:h-[23px]" />
+              <AiOutlineHeart className="w-[20px] h-[20px] hover:scale-110 duration-300 transition" />
               <span className="ml-4 ">Notifications</span>
             </li>
             <li className="mb-4 flex items-center  group-hover:text-primary-base rounded-full pl-3 pr-8 py-3">
-              <BsPlusSquare className="w-[20px] h-[20px] hover:w-[23px] hover:h-[23px]" />
+              <BsPlusSquare className="w-[20px] h-[20px] hover:scale-110 duration-300 transition" />
               <span className="ml-4 " onClick={handleOpenForm}>
                 Create
               </span>
@@ -92,14 +91,16 @@ function Sidebar({ handleLogout, isOpen, setIsOpen }) {
               <Link to={`/${user?.username}`}>
                 <li
                   className={`mb-4 flex items-center  group-hover:text-primary-base rounded-full pl-3 pr-8 py-3 ${
-                    active === "profile" ? "bg-white text-primary-base" : ""
+                    active === "profile"
+                      ? "bg-white text-primary-base font-bold"
+                      : ""
                   }`}
                   onClick={() => handleItemClick("profile")}
                 >
                   {user.profile_photo ? (
                     <img
                       src={user.profile_photo}
-                      className="w-[20px] h-[20px] hover:w-[23px] hover:h-[23px] rounded-full"
+                      className="w-[20px] h-[20px] hover:scale-110 duration-300 transition rounded-full"
                     />
                   ) : (
                     <RxAvatar />

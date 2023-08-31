@@ -56,9 +56,9 @@ function Login() {
           <form onSubmit={handleLogin}>
             <input
               type="text"
-              name="identifier" // Change to "identifier"
+              name="identifier"
               placeholder="Username or Email"
-              value={formData.identifier} // Change to formData.identifier
+              value={formData.identifier}
               onChange={handleChange}
               className="w-full px-4 py-2 mb-2 border rounded-sm"
             />
