@@ -1,14 +1,15 @@
 import { Dialog, Transition } from "@headlessui/react";
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useContext, useEffect, useState } from "react";
 import Card from "./Card";
 import Carousel from "./Carousel";
 import StorySlide from "./StorySlide";
+import { StoryUserContext } from "./StoryCard";
 
 export default function StoryModal({ children, data, stories }) {
   let [isOpen, setIsOpen] = useState(false);
+  const { setSelectedUser, selectedUser } = useContext(StoryUserContext);
   let [currentStoryIndex, setCurrentStoryIndex] = useState(0);
   let [timer, setTimer] = useState(null);
-
   function closeModal() {
     setIsOpen(false);
     setCurrentStoryIndex(0);
@@ -16,6 +17,7 @@ export default function StoryModal({ children, data, stories }) {
   }
 
   function openModal() {
+    setSelectedUser(data);
     setIsOpen(true);
   }
   let testFile = [];
