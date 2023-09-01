@@ -1,7 +1,5 @@
 import { Dialog, Transition } from "@headlessui/react";
-import { Fragment, useContext, useEffect, useState } from "react";
-import Card from "./Card";
-import Carousel from "./Carousel";
+import { Fragment, useContext, useState } from "react";
 import StorySlide from "./StorySlide";
 import { StoryUserContext } from "./StoryCard";
 
@@ -29,40 +27,6 @@ export default function StoryModal({ children, data, stories }) {
       return { file: file, user: story.user };
     });
   });
-  // console.log("TEST FILE", testFile);
-  // console.log("STORIES", STORIES);
-  const allStories = STORIES?.map((story) => story);
-  // console.log("FILES", allStories);
-  function handleCarouselChange(index) {
-    setCurrentStoryIndex(index);
-  }
-  // console.log("data", data);
-
-  useEffect(() => {
-    if (isOpen && data?.stories?.length > 0) {
-      clearTimeout(timer);
-
-      const newTimer = setTimeout(() => {
-        if (currentStoryIndex < data.stories.length - 1) {
-          setCurrentStoryIndex(currentStoryIndex + 1);
-        } else {
-          closeModal();
-        }
-      }, 99999999999);
-
-      setTimer(newTimer);
-    }
-  }, [isOpen, currentStoryIndex, data?.stories?.length]);
-
-  useEffect(() => {
-    return () => {
-      clearTimeout(timer);
-    };
-  }, []);
-  const userStories = allStories?.map((userStoryList) =>
-    userStoryList.map((story) => story?.file)
-  );
-  // console.log("user Stories ", userStories);
 
   return (
     <>
@@ -103,7 +67,7 @@ export default function StoryModal({ children, data, stories }) {
                     className="text-lg font-medium leading-6 text-gray-900 pr-[200px]"
                   >
                     <div
-                      className="text-white absolute right-0 top-0 z-50"
+                      className=" absolute right-0 top-0 z-50 w-[36px] h-[36px] flex justify-center items-center m-6 bg-white rounded-full cursor-pointer"
                       onClick={closeModal}
                     >
                       X
