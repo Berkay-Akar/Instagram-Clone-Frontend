@@ -20,7 +20,6 @@ function StoryContainer({ isStoryOpen, setIsStoryOpen }) {
     setSelectedStory(story);
     setIsStoryOpen(true);
   };
-  // console.log("data", data);
   // const temp = data.getStoryList.map((storyList) => storyList);
   // const users = temp.map((story) => story.user);
   // console.log("users", users);

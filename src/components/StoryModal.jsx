@@ -46,7 +46,7 @@ export default function StoryModal({ children, data, stories }) {
         } else {
           closeModal();
         }
-      }, 3000);
+      }, 99999999999);
 
       setTimer(newTimer);
     }
@@ -116,7 +116,13 @@ export default function StoryModal({ children, data, stories }) {
                           {"<"}
                         </button>
                       )}
-                      <StorySlide stories={STORIES} />{" "}
+
+                      <StorySlide
+                        stories={stories}
+                        currentStoryIndex={currentStoryIndex}
+                        userIndex={userIndex}
+                      />
+
                       {/* Use this line correctly */}
                       {userIndex < STORIES.length - 1 && (
                         <button
