@@ -1,8 +1,37 @@
-import React from "react";
+import React, { useContext } from "react";
+import { StoryUserContext } from "./StoryCard";
 
 function SubStories({ story }) {
   const [index, setIndex] = React.useState(0);
   const [visitedIndex, setVisitedIndex] = React.useState([0]);
+  let [timer, setTimer] = React.useState(null);
+  const {
+    closeModal,
+    setIsOpen,
+    isOpen,
+    currentStoryIndex,
+    setCurrentStoryIndex,
+  } = useContext(StoryUserContext);
+
+  React.useEffect(() => {
+    clearTimeout(timer);
+
+    const newTimer = setTimeout(() => {
+      if (index < story.length - 1) {
+        setIndex(index + 1);
+      } else {
+        closeModal();
+      }
+    }, 3000);
+
+    setTimer(newTimer);
+  }, [index]);
+
+  React.useEffect(() => {
+    return () => {
+      clearTimeout(timer);
+    };
+  }, []);
   const handleIndex = (numb, info) => {
     if (info === "add") {
       setVisitedIndex([...visitedIndex, numb]);

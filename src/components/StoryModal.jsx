@@ -4,15 +4,15 @@ import StorySlide from "./StorySlide";
 import { StoryUserContext } from "./StoryCard";
 
 export default function StoryModal({ children, data, stories }) {
-  let [isOpen, setIsOpen] = useState(false);
-  const { setSelectedUser, selectedUser } = useContext(StoryUserContext);
-  let [currentStoryIndex, setCurrentStoryIndex] = useState(0);
-  let [timer, setTimer] = useState(null);
-  function closeModal() {
-    setIsOpen(false);
-    setCurrentStoryIndex(0);
-    clearTimeout(timer);
-  }
+  const {
+    setSelectedUser,
+    selectedUser,
+    closeModal,
+    setIsOpen,
+    isOpen,
+    currentStoryIndex,
+    setCurrentStoryIndex,
+  } = useContext(StoryUserContext);
 
   function openModal() {
     setSelectedUser(data);
