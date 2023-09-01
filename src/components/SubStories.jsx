@@ -15,43 +15,55 @@ function SubStories({ story }) {
   };
 
   return (
-    <div className="w-1/3 h-screen bg-white m-4 p-4  relative rounded-md ">
-      <div className="w-full h-1 rounded-full  gap-2 flex">
-        {story?.map((s, storyIndex) => {
-          return (
-            <div
-              key={s.id}
-              className="h-1 bg-gray-500 border-1 rounded-full"
-              style={{
-                width: `${100 / story.length}%`,
-                ...(visitedIndex.find((v) => v === storyIndex) >= 0 && {
-                  background: "white",
-                }),
-              }}
-            ></div>
-          );
-        })}
+    <div className="w-1/3 h-11/12 bg-white m-4   relative rounded-md ">
+      <div className="relative bg-dark h-full">
+        <img
+          className="w-full rounded-md absolute h-full  object-cover"
+          src={story[index].file}
+        />
       </div>
-      <div className="py-4">
-        <div className="justify-between items-center flex">
-          {index !== 0 ? (
-            <button onClick={() => handleIndex(index - 1, "remove")}>
-              geri
-            </button>
-          ) : (
-            <div />
-          )}
-          {index !== story?.length - 1 ? (
-            <button onClick={() => handleIndex(index + 1, "add")}>ileri</button>
-          ) : (
-            <div />
-          )}
-        </div>
-        <div className="relative">
-          <img
-            className="w-full rounded-md absolute h-[500px] object-cover"
-            src={story[index].file}
-          />
+      <div className="absolute left-0 top-0 w-full p-4  ">
+        <div className="w-full h-1 rounded-full   flex flex-wrap ">
+          <div className="w-full gap-2 flex">
+            {story?.map((s, storyIndex) => {
+              return (
+                <div
+                  key={s.id}
+                  className="h-1 bg-gray-500 border-1 rounded-full"
+                  style={{
+                    width: `${100 / story.length}%`,
+                    ...(visitedIndex.find((v) => v === storyIndex) >= 0 && {
+                      background: "white",
+                    }),
+                  }}
+                ></div>
+              );
+            })}
+          </div>
+          <div className="w-full mt-2">
+            <div className="justify-between items-center flex">
+              {index !== 0 ? (
+                <button
+                  className="text-white"
+                  onClick={() => handleIndex(index - 1, "remove")}
+                >
+                  geri
+                </button>
+              ) : (
+                <div />
+              )}
+              {index !== story?.length - 1 ? (
+                <button
+                  className="text-white"
+                  onClick={() => handleIndex(index + 1, "add")}
+                >
+                  ileri
+                </button>
+              ) : (
+                <div />
+              )}
+            </div>
+          </div>
         </div>
       </div>
     </div>
