@@ -108,30 +108,11 @@ export default function StoryModal({ children, data, stories }) {
                         userIndex === currentStoryIndex ? "" : "hidden"
                       }`}
                     >
-                      {userIndex > 0 && (
-                        <button
-                          className="absolute top-1/2 mr-[500px] transform -translate-y-1/2 items-center text-white bg-opacity-50"
-                          onClick={() => handleCarouselChange(userIndex - 1)}
-                        >
-                          {"<"}
-                        </button>
-                      )}
-
                       <StorySlide
                         stories={stories}
                         currentStoryIndex={currentStoryIndex}
                         userIndex={userIndex}
                       />
-
-                      {/* Use this line correctly */}
-                      {userIndex < STORIES.length - 1 && (
-                        <button
-                          className="absolute top-1/2 ml-[500px] transform -translate-y-1/2 text-white bg-opacity-50"
-                          onClick={() => handleCarouselChange(userIndex + 1)}
-                        >
-                          {">"}
-                        </button>
-                      )}
                     </div>
                   ))}
                 </Dialog.Panel>
@@ -143,14 +124,3 @@ export default function StoryModal({ children, data, stories }) {
     </>
   );
 }
-
-/*
-                      <div className="w-[390px] h-1 bg-gray-300 absolute top-1 ">
-                        <div
-                          className="h-1 bg-gray-500"
-                          style={{
-                            width: `${stories.length * 100}%`,
-                          }}
-                        ></div>
-                      </div>
-*/
