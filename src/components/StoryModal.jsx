@@ -101,7 +101,14 @@ export default function StoryModal({ children, data, stories }) {
                   <Dialog.Title
                     as="h3"
                     className="text-lg font-medium leading-6 text-gray-900 pr-[200px]"
-                  ></Dialog.Title>
+                  >
+                    <div
+                      className="text-white absolute right-0 top-0 z-50"
+                      onClick={closeModal}
+                    >
+                      X
+                    </div>
+                  </Dialog.Title>
 
                   {STORIES.map((userStories, userIndex) => (
                     <div
