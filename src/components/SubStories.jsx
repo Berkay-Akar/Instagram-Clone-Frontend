@@ -1,10 +1,11 @@
 import React, { useContext } from "react";
 import { StoryUserContext } from "./StoryCard";
 
-function SubStories({ story }) {
+function SubStories({ story, onStoryEnd, user }) {
   const [index, setIndex] = React.useState(0);
   const [visitedIndex, setVisitedIndex] = React.useState([0]);
   let [timer, setTimer] = React.useState(null);
+  console.log(story);
   const {
     closeModal,
     setIsOpen,
@@ -20,9 +21,9 @@ function SubStories({ story }) {
       if (index < story.length - 1) {
         setIndex(index + 1);
       } else {
-        closeModal();
+        onStoryEnd();
       }
-    }, 3000);
+    }, 99999999);
 
     setTimer(newTimer);
   }, [index]);
@@ -71,12 +72,20 @@ function SubStories({ story }) {
           </div>
           <div className="w-full mt-2">
             <div className="justify-between items-center flex">
+              <div className="flex flex-row items-center justify-between gap-2">
+                <img
+                  src={user.profile_photo}
+                  alt="profile_photo"
+                  className="rounded-full w-12 h-12"
+                />
+                <p className="text-white ">{user.username}</p>
+              </div>
               {index !== 0 ? (
                 <button
                   className="text-white"
                   onClick={() => handleIndex(index - 1, "remove")}
                 >
-                  geri
+                  previus
                 </button>
               ) : (
                 <div />
@@ -86,7 +95,7 @@ function SubStories({ story }) {
                   className="text-white"
                   onClick={() => handleIndex(index + 1, "add")}
                 >
-                  ileri
+                  next
                 </button>
               ) : (
                 <div />
