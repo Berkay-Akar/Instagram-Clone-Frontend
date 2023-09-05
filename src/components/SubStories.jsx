@@ -23,7 +23,7 @@ function SubStories({ story, onStoryEnd, user }) {
       } else {
         onStoryEnd();
       }
-    }, 99999999);
+    }, 3000);
 
     setTimer(newTimer);
   }, [index]);
