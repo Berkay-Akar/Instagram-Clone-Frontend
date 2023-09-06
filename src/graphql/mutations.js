@@ -286,3 +286,19 @@ export const GET_PROFILE_POSTS = gql`
     }
   }
 `;
+
+export const GET_CONVERSATION_MESSAGE = gql`
+  mutation getConversationMessage($conversationId: Int!) {
+    getConversationMessage(conversationId: $conversationId) {
+      id
+      content
+      senderId
+      receiverId
+      is_seen
+      is_deleted
+      created_at
+      updated_at
+      conversationId
+    }
+  }
+`;

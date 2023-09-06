@@ -78,7 +78,7 @@ function Register() {
               type="text"
               name="name"
               placeholder="Full Name"
-              value={formData.identifier}
+              value={formData.name}
               onChange={handleChange}
               className="w-full px-4 py-2 mb-2 border rounded-sm"
             />
@@ -86,7 +86,7 @@ function Register() {
               type="text"
               name="username"
               placeholder="Username"
-              value={formData.identifier}
+              value={formData.username}
               onChange={handleChange}
               className="w-full px-4 py-2 mb-2 border rounded-sm"
             />
@@ -94,7 +94,7 @@ function Register() {
               type="email"
               name="email"
               placeholder="Email"
-              value={formData.identifier}
+              value={formData.email}
               onChange={handleChange}
               className="w-full px-4 py-2 mb-2 border rounded-sm"
             />
