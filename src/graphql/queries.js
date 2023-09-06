@@ -350,3 +350,31 @@ export const GET_USER_PROFILE = gql`
     }
   }
 `;
+
+export const GET_USER_CONVERSATIONS = gql`
+  query getConversations {
+    getConversations {
+      message {
+        id
+        senderId
+        receiverId
+        content
+        conversationId
+        created_at
+        updated_at
+      }
+      userA {
+        id
+        name
+        username
+        profile_photo
+      }
+      userB {
+        id
+        name
+        username
+        profile_photo
+      }
+    }
+  }
+`;

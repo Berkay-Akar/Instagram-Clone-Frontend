@@ -72,10 +72,14 @@ function Sidebar({ handleLogout, isOpen, setIsOpen }) {
               <BiMoviePlay className="w-[20px] h-[20px] hover:scale-110 duration-300 transition" />
               <span className="ml-4 ">Reels</span>
             </li>
-            <li className="mb-4 flex items-center  group-hover:text-primary-base rounded-full pl-3 pr-8 py-3">
-              <RiMessengerLine className="w-[20px] h-[20px] hover:scale-110 duration-300 transition" />
-              <span className="ml-4 ">Messages</span>
-            </li>
+            {user && (
+              <Link to={"/direct/inbox"}>
+                <li className="mb-4 flex items-center  group-hover:text-primary-base rounded-full pl-3 pr-8 py-3">
+                  <RiMessengerLine className="w-[20px] h-[20px] hover:scale-110 duration-300 transition" />
+                  <span className="ml-4 ">Messages</span>
+                </li>
+              </Link>
+            )}
             <li className="mb-4 flex items-center  group-hover:text-primary-base rounded-full pl-3 pr-8 py-3">
               <AiOutlineHeart className="w-[20px] h-[20px] hover:scale-110 duration-300 transition" />
               <span className="ml-4 ">Notifications</span>

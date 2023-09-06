@@ -8,6 +8,7 @@ import Profile from "./pages/Profile";
 import "./index.css";
 import ChangePassword from "./pages/ChangePassword";
 import ResetPassword from "./pages/ResetPassword";
+import Inbox from "./components/Inbox";
 export const userContext = React.createContext();
 
 function App() {
@@ -45,6 +46,7 @@ function App() {
           <Route path={`/:username`} element={user ? <Profile /> : <Login />} />
           <Route path={`/auth/reset/:token`} element={<ChangePassword />} />
           <Route path="/auth/reset" element={<ResetPassword />} />
+          <Route path="/direct/inbox" element={<Inbox />} />
         </Routes>
       </BrowserRouter>
     </userContext.Provider>
