@@ -8,7 +8,7 @@ import Profile from "./pages/Profile";
 import "./index.css";
 import ChangePassword from "./pages/ChangePassword";
 import ResetPassword from "./pages/ResetPassword";
-import Inbox from "./components/Inbox";
+import Inbox from "./pages/Inbox";
 export const userContext = React.createContext();
 
 function App() {
