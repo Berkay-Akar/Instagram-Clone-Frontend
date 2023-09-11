@@ -10,6 +10,7 @@ function Inbox() {
   const loggedInUser = useContext(userContext);
   const { error, loading, data } = useQuery(GET_USER_CONVERSATIONS);
   const [conversations, setConversations] = useState([]);
+  const [currentConversationId, setCurrentConversationId] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
   console.log("CONVERSATION DATA", data);
 
@@ -22,8 +23,9 @@ function Inbox() {
   });
 
   console.log("conversations", conversations);
-  const handleOpen = () => {
+  const handleOpen = (conversationId) => {
     setIsOpen(true);
+    setCurrentConversationId(conversationId);
   };
 
   console.log("is OPEN", isOpen);
@@ -35,7 +37,10 @@ function Inbox() {
         {conversations.map((conversation, index) =>
           conversation.userA.id != loggedInUser.id ? (
             <ul key={index} className="w-[382px]  ">
-              <li className="cursor-pointer" onClick={() => handleOpen()}>
+              <li
+                className="cursor-pointer"
+                onClick={() => handleOpen(conversation.id)}
+              >
                 <div className="flex flex-row items-center justify-start gap-1 border  pb-4 pl-2">
                   <img
                     className="rounded-full w-12 h-12 mt-2"
@@ -60,8 +65,13 @@ function Inbox() {
           )
         )}
       </div>
-      <p>asdmnabdasdgjasgdashj </p>
-      {isOpen && <ChatArea messages={conversations} isOpen={isOpen} />}
+      {isOpen && (
+        <ChatArea
+          messages={conversations}
+          isOpen={isOpen}
+          currentConversationId={currentConversationId}
+        />
+      )}
     </div>
   );
 }
