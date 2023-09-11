@@ -30,7 +30,7 @@ function StoryContainer({ isStoryOpen, setIsStoryOpen }) {
   return (
     <ul className="flex flex-row gap-3 items-center justify-start">
       {stories.map((story, index) => (
-        <div key={story.id} onClick={() => handleOpenStory(index)}>
+        <div key={story?.id} onClick={() => handleOpenStory(index)}>
           <StoryCard data={story} stories={stories} />
         </div>
       ))}

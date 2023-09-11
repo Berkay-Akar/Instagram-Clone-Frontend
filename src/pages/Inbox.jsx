@@ -17,6 +17,10 @@ function Inbox() {
     if (data) setConversations(data.getConversations);
   }, [data]);
 
+  let conversationId = conversations.map((conversation) => {
+    console.log(conversation);
+  });
+
   console.log("conversations", conversations);
   const handleOpen = () => {
     setIsOpen(true);
@@ -56,7 +60,7 @@ function Inbox() {
           )
         )}
       </div>
-
+      <p>asdmnabdasdgjasgdashj </p>
       {isOpen && <ChatArea messages={conversations} isOpen={isOpen} />}
     </div>
   );

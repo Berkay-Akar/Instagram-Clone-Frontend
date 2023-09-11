@@ -354,6 +354,7 @@ export const GET_USER_PROFILE = gql`
 export const GET_USER_CONVERSATIONS = gql`
   query getConversations {
     getConversations {
+      id
       message {
         id
         senderId

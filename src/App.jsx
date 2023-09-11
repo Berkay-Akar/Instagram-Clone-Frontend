@@ -9,6 +9,7 @@ import "./index.css";
 import ChangePassword from "./pages/ChangePassword";
 import ResetPassword from "./pages/ResetPassword";
 import Inbox from "./pages/Inbox";
+import ChatArea from "./components/ChatArea";
 export const userContext = React.createContext();
 
 function App() {
@@ -47,6 +48,7 @@ function App() {
           <Route path={`/auth/reset/:token`} element={<ChangePassword />} />
           <Route path="/auth/reset" element={<ResetPassword />} />
           <Route path="/direct/inbox" element={<Inbox />} />
+          <Route path="/inbox/:conversationId" element={<ChatArea />} />
         </Routes>
       </BrowserRouter>
     </userContext.Provider>
