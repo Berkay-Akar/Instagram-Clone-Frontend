@@ -302,3 +302,19 @@ export const GET_CONVERSATION_MESSAGE = gql`
     }
   }
 `;
+
+export const SEND_MESSAGE = gql`
+  mutation sendMessage($receiverId: Int!, $content: String!) {
+    sendMessage(receiverId: $receiverId, content: $content) {
+      id
+      content
+      senderId
+      receiverId
+      is_seen
+      is_deleted
+      created_at
+      updated_at
+      conversationId
+    }
+  }
+`;

@@ -5,12 +5,14 @@ import { userContext } from "../App";
 import InboxSidebar from "../components/InboxSidebar";
 import ChatArea from "../components/ChatArea";
 import { GET_CONVERSATION_MESSAGE } from "../graphql/mutations";
+import SendMessageArea from "../components/SendMessageArea";
 
 function Inbox() {
   const loggedInUser = useContext(userContext);
   const { error, loading, data } = useQuery(GET_USER_CONVERSATIONS);
   const [conversations, setConversations] = useState([]);
   const [currentConversationId, setCurrentConversationId] = useState(null);
+  const [currentConversation, setCurrentConversation] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
   console.log("CONVERSATION DATA", data);
 
@@ -19,13 +21,14 @@ function Inbox() {
   }, [data]);
 
   let conversationId = conversations.map((conversation) => {
-    console.log(conversation);
+    console.log("conversation", conversation);
   });
 
   console.log("conversations", conversations);
   const handleOpen = (conversationId) => {
     setIsOpen(true);
     setCurrentConversationId(conversationId);
+    setCurrentConversation(conversations.find((c) => c.id === conversationId));
   };
 
   console.log("is OPEN", isOpen);
@@ -65,13 +68,19 @@ function Inbox() {
           )
         )}
       </div>
-      {isOpen && (
-        <ChatArea
-          messages={conversations}
-          isOpen={isOpen}
-          currentConversationId={currentConversationId}
-        />
-      )}
+
+      <div className="h-screen w-full">
+        <div className="h-[calc(100%-52px)]">
+          {isOpen && (
+            <ChatArea
+              messages={conversations}
+              isOpen={isOpen}
+              currentConversationId={currentConversationId}
+              currentConversation={currentConversation}
+            />
+          )}
+        </div>
+      </div>
     </div>
   );
 }
