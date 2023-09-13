@@ -87,6 +87,21 @@ export const POST_ACTION_FRAGMENT = gql`
         profile_photo
       }
     }
+    post_replies {
+      id
+      content
+      like_count
+      comments_count
+      original_reply_id
+      created_at
+      updated_at
+      user {
+        id
+        name
+        username
+        profile_photo
+      }
+    }
     saves {
       id
       post {
