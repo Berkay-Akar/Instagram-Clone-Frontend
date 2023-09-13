@@ -33,7 +33,7 @@ function Main({ isOpen, setIsOpen, isStoryOpen, setIsStoryOpen }) {
   // const [visiblePosts, setVisiblePosts] = useState(posts.slice(0, 3));
   // const [startIndex, setStartIndex] = useState(3);
   // const chunkSize = 2;
-
+  console.log("posts", posts);
   const isLikedByUser = (post) => {
     if (post && post.likes) {
       const likedUsers = post.likes.map((like) => like.user.id);

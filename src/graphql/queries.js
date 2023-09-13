@@ -17,6 +17,7 @@ export const POSTS = gql`
       }
       likes {
         id
+        user_id
         user {
           id
           name

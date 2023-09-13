@@ -1,6 +1,7 @@
-import { useMutation } from "@apollo/client";
+import { useMutation, useSubscription } from "@apollo/client";
 import { useState } from "react";
 import { SEND_MESSAGE } from "../graphql/mutations";
+// import { NEW_MESSAGE_SUBSCRIPTION } from "../graphql/subscription";
 
 function SendMessageArea({ currentConversation }) {
   const [message, setMessage] = useState({
@@ -8,6 +9,9 @@ function SendMessageArea({ currentConversation }) {
   });
   const [sendMessage] = useMutation(SEND_MESSAGE);
   const receiverId = currentConversation.userB.id;
+  // const { data } = useSubscription(NEW_MESSAGE_SUBSCRIPTION, {
+  //   variables: { conversationId: currentConversation.id },
+  // });
   console.log("receiverId", receiverId);
 
   const handleChange = (e) => {
@@ -26,6 +30,10 @@ function SendMessageArea({ currentConversation }) {
           receiverId: receiverId,
         },
       });
+
+      // if (data && data.sendMessage) {
+      //   const sentMessage = data.sendMessage;
+      // }
 
       setMessage({ content: "" });
     } catch (error) {
