@@ -318,15 +318,3 @@ export const SEND_MESSAGE = gql`
     }
   }
 `;
-
-const NEW_MESSAGE_SUBSCRIPTION = gql`
-  subscription NewMessage($conversationId: ID!) {
-    newMessage(conversationId: $conversationId) {
-      id
-      senderId
-      content
-      created_at
-      # Include other message fields as needed
-    }
-  }
-`;
