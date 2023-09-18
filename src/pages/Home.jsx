@@ -1,7 +1,7 @@
 import { useState, useContext } from "react";
 import { userContext } from "../App";
 import Sidebar from "../components/Sidebar";
-import Main from "../components/main";
+import Main from "../components/Main";
 import Suggestions from "../components/Suggestions";
 
 function Home({ handleLogout }) {
