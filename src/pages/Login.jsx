@@ -35,7 +35,6 @@ function Login() {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    console.log(formData);
     try {
       login({
         variables: {
